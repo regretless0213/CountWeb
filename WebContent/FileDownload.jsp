@@ -18,7 +18,7 @@
 	<% String juge = (String)request.getAttribute("message");
 	if(!juge.startsWith("Error")) {%>
 	统计结果:<br />
-	<%FileReader filePrint = new FileReader("D:\\Project\\workspace\\CountWeb\\Result.txt");
+	<%FileReader filePrint = new FileReader(".\\Result.txt");
 	BufferedReader br = new BufferedReader(filePrint);
 	for(int i = 0;i<14;i++){%>
 		<%=br.readLine()%><br />
@@ -26,7 +26,7 @@
 	br.close();
 	filePrint.close();
 	%>
-	<a href="D:\Project\workspace\CountWeb\Result.txt">下载Result文件</a>
+	<a href= <%= request.getContextPath() + "Result.txt"%>>下载Result文件</a>
 	<%} %>
 	<br />
 </body>

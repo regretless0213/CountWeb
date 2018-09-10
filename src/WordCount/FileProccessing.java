@@ -1,6 +1,7 @@
 package WordCount;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -13,9 +14,11 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class FileProccessing {
+	private String genpath = System.getProperty("user.dir");
+
 	public FileProccessing(String filename) {
 		try {
-			new FileProccessing(filename , 4096 , " ,.!?\"\';:0123456789\n\r\t“”‘’·——-=*/()[]{}…（）【】｛｝\0");
+			new FileProccessing(filename, 4096, " ,.!?\"\';:0123456789\n\r\t“”‘’·——-=*/()[]{}…（）【】｛｝\0");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +37,7 @@ public class FileProccessing {
 		String thelast = "";
 		String wordpart = "";
 
-		FileOutputStream testfile = new FileOutputStream("D:\\Project\\workspace\\CountWeb\\Result.txt");
+		FileOutputStream testfile = new FileOutputStream(genpath + File.separator + "Result.txt");
 		testfile.write(new String("").getBytes());
 		testfile.close();
 
@@ -90,9 +93,9 @@ public class FileProccessing {
 				if (hm.get(word) != null) {
 					int value = ((Integer) hm.get(word)).intValue();
 					value++;
-					hm.put(word, new Integer(value));
+					hm.put(word, value);
 				} else {
-					hm.put(word, new Integer(1));
+					hm.put(word, 1);
 				}
 			}
 			thelast = wordpart;
@@ -101,9 +104,9 @@ public class FileProccessing {
 			if (hm.get(wordpart) != null) {
 				int value = ((Integer) hm.get(wordpart)).intValue();
 				value++;
-				hm.put(wordpart, new Integer(value));
+				hm.put(wordpart, value);
 			} else {
-				hm.put(wordpart, new Integer(1));
+				hm.put(wordpart, 1);
 			}
 		}
 
@@ -130,7 +133,7 @@ public class FileProccessing {
 		String name = filename.replaceAll(reg, "$1");
 		if (hm.size() > 100) {
 
-			FileWriter result = new FileWriter("D:\\Project\\workspace\\CountWeb\\Result.txt", true);
+			FileWriter result = new FileWriter(genpath + File.separator + "Result.txt", true);
 
 			result.write("~~~~~~~~~~~~~~~~~~~~\r\n");
 			result.write(name.substring(0, name.lastIndexOf(".")) + "\r\n");

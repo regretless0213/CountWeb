@@ -23,6 +23,7 @@ public class UploadServlet extends HttpServlet {
 
 	// 上传文件存储目录
 	private static final String UPLOAD_DIRECTORY = "upload";
+	private String genpath = System.getProperty("user.dir");
 
 	// 上传配置
 	private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3; // 3MB
@@ -59,7 +60,7 @@ public class UploadServlet extends HttpServlet {
 		upload.setSizeMax(MAX_REQUEST_SIZE);
 
 
-		String uploadPath = "D:\\Project\\workspace" + File.separator + UPLOAD_DIRECTORY;
+		String uploadPath = genpath + File.separator + UPLOAD_DIRECTORY;
 
 		// 如果目录不存在则创建
 		File uploadDir = new File(uploadPath);
